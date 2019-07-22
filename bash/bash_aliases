@@ -1,6 +1,7 @@
 
 # Download a website:
-alias get-site='wget -p -k --recursive'
+alias get-webpage='wget -p -k'
+alias clone-website='wget --recursive --convert-links --adjust-extension --page-requisites'
 
 # Ruby server:
 alias share-public='ruby -run -ehttpd ~/Public/ -p8000'
