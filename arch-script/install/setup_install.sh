@@ -4,15 +4,6 @@
 KEYBOARD='en'
 EFI_MODE=false
 
-# Color
-RED='\033[0;31m'
-GREEN='\033[0;32m'
-YELLOW='\033[0;33m'
-NC='\033[0m'
-
-# Bash conf
-export force_color_prompt=yes
-
 # Shortcut command
 alias echo='echo -e'
 
@@ -21,15 +12,15 @@ echo "### Setup Archlinux install script ###"
 
 # Load keyboard
 echo "Available Keyboard:"
-ls /use/share/kdb/locale
+ls /usr/share/kdb/locale
 read -p "Choose your keyboard layout: " KEYBOARD
 
 loadkeys $KEYBOARD
 
 if [ $? -eq 0 ]; then
-    echo -e "${GREEN}Keyboard setup.${NC}"
+    echo "Keyboard setup."
 else
-    echo "${RED}Keyboard setup fail.${NC}"
+    echo "Keyboard setup fail."
 fi
 
 # Check if the machine is in EFI or CSM mode
@@ -49,9 +40,9 @@ fi
 echo "Checking network..."
 
 if ping -q -c 1 -W 3 google.com >/dev/null; then
-    echo "${GREEN}The network is up.${NC}"
+    echo "The network is up."
 else
-    echo "${RED}The network is down.${NC}"
+    echo "The network is down."
     read -p "Do you want to connect to through wi-fi ? [Y/n]: " DIALOG_ANSWER
     if [[ $DIALOG_ANSWER =~ ^[Yy]$ ]]; then
         wifi-menu
@@ -65,7 +56,7 @@ fi
 # Update the system clock 
 timedatectl set-ntp true
 
-echo "${YELLOW}Time for you to partition your disk.${NC}"
+echo "Time for you to partition your disk."
 
-echo "End setup Archlinux script"
+echo "### End setup Archlinux script ###"
 # END
