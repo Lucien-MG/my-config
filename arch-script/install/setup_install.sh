@@ -1,9 +1,7 @@
 #!/bin/bash
 
-# Global Variable:
-KEYBOARD_AVAIL=('fr' 'en')
+# Global Variable
 KEYBOARD='en'
-
 EFI_MODE=false
 
 # Color
@@ -12,10 +10,14 @@ GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 NC='\033[0m'
 
-echo "\nArch install script\n"
+# Shortcut command
+alias echo='echo -e'
+
+# BEGIN
+echo "Arch install script"
 
 # Load keyboard
-printf '%s\n' "${KEYBOARD_AVAIL}"
+echo "Available Keyboard: fr en ru"
 read -p "Choose your keyboard layout: " KEYBOARD
 
 loadkeys $KEYBOARD
@@ -45,7 +47,7 @@ if ping -q -c 1 -W 3 google.com >/dev/null; then
 else
     echo "${RED}The network is down.${NC}"
     read -p "Do you want to connect to through wi-fi ? [Y/n]: " DIALOG_ANSWER
-    if [[ $DIALOG_ANSWER=~ ^[Yy]$ ]]; then
+    if [[ $DIALOG_ANSWER =~ ^[Yy]$ ]]; then
         wifi-menu
     else
         echo "Impossible to do the installation without internet."
@@ -57,5 +59,5 @@ fi
 # Update the system clock 
 timedatectl set-ntp true
 
-printf "${YELLOW}Time for you to partition your disk.${NC}"
-
+echo "${YELLOW}Time for you to partition your disk.${NC}"
+# END
