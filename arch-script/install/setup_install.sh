@@ -10,20 +10,24 @@ GREEN='\033[0;32m'
 YELLOW='\033[0;33m'
 NC='\033[0m'
 
+# Bash conf
+export force_color_prompt=yes
+
 # Shortcut command
 alias echo='echo -e'
 
 # BEGIN
-echo "Arch install script"
+echo "### Setup Archlinux install script ###"
 
 # Load keyboard
-echo "Available Keyboard: fr en ru"
+echo "Available Keyboard:"
+ls /use/share/kdb/locale
 read -p "Choose your keyboard layout: " KEYBOARD
 
 loadkeys $KEYBOARD
 
 if [ $? -eq 0 ]; then
-    echo "${GREEN}Keyboard setup.${NC}"
+    echo -e "${GREEN}Keyboard setup.${NC}"
 else
     echo "${RED}Keyboard setup fail.${NC}"
 fi
@@ -41,7 +45,9 @@ fi
 # Check if network is up
 # ping -> -c nb = the number of request to send
 #      -> -q = quiet output
-#      -> -W nb = time to wait for a response 
+#      -> -W nb = time to wait for a response
+echo "Checking network..."
+
 if ping -q -c 1 -W 3 google.com >/dev/null; then
     echo "${GREEN}The network is up.${NC}"
 else
@@ -60,4 +66,6 @@ fi
 timedatectl set-ntp true
 
 echo "${YELLOW}Time for you to partition your disk.${NC}"
+
+echo "End setup Archlinux script"
 # END
