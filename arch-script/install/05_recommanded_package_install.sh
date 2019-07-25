@@ -1,5 +1,12 @@
 #!/bin/bash
 
+if [ -f "./03_base_install.sh" ]; then                                          
+    echo "arch-chroot"                                                          
+    cp $SCRIPT_PATH/$0 /mnt/                                                    
+    arch-chroot /mnt ./$0                                                       
+    exit                                                                        
+fi
+
 NETWORK_P="networkmanager"
 SYSTEM_P="udev acpid lsb-release"
 SYSTEMADMIN_P="syslog-ng mc mtools dosfstools exfat_utils git"

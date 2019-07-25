@@ -1,9 +1,15 @@
 #!/bin/bash
 
+SCRIPT_PATH=$(pwd)
+
+if [ -f "./03_base_install.sh" ]; then                                          
+    echo "arch-chroot"                                                          
+    cp $SCRIPT_PATH/$0 /mnt/                                                    
+    arch-chroot /mnt ./$0                                                       
+    exit                                                                        
+fi   
+
 WRAPPERS=('trizen' 'pacaur' 'yay')
-trizen="https://aur.archlinux.org/trizen.git"
-pacaur="https://aur.archlinux.org/pacaur.giti"
-yay="https://aur.archlinux.org/yay.git"
 
 read -p "Do you want to install a pacman wrapper ? [Y/n]" ANSWER
 
