@@ -9,14 +9,18 @@ if [ -f "./03_base_install.sh" ]; then
     exit                                                                        
 fi   
 
+if [ $(id -u) = 0 ]; then
+    echo "This script can't be execute as root."
+    exit
+fi
+
 WRAPPERS=('trizen' 'pacaur' 'yay')
 
-read -p "Do you want to install a pacman wrapper ? [Y/n]" ANSWER
+read -p "Do you want to install a pacman wrapper ? [Y/n]: " ANSWER
 
 if [[ $ANSWER =~ ^[Yy]$ ]]; then
     
-    git --version
-    if [ $? != 0]; then
+    if ! [ -x "($command -v git)" ]; then
         echo "Git must be install to perform this action."
         exit
     fi
@@ -31,8 +35,8 @@ if [[ $ANSWER =~ ^[Yy]$ ]]; then
 
     read -p "Choose a pacman wrapper: " NB_WRAPPER
 
-    WRAPPER=$WRAPPERS[$NB_WRAPPER]
-    git clone https://aur.archlinux.org/$WRAPPER ~/
+    WRAPPER=${WRAPPERS[$NB_WRAPPER]}
+    git clone https://aur.archlinux.org/$WRAPPER ~/$WRAPPER
 
-    $WRAPPER/makepkg -si
+    makepkg -si ~/$WRAPPER/
 fi

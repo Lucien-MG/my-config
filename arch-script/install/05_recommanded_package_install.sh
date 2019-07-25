@@ -1,5 +1,7 @@
 #!/bin/bash
 
+SCRIPT_PATH=$(pwd)
+
 if [ -f "./03_base_install.sh" ]; then                                          
     echo "arch-chroot"                                                          
     cp $SCRIPT_PATH/$0 /mnt/                                                    
@@ -9,7 +11,7 @@ fi
 
 NETWORK_P="networkmanager"
 SYSTEM_P="udev acpid lsb-release"
-SYSTEMADMIN_P="syslog-ng mc mtools dosfstools exfat_utils git"
+SYSTEMADMIN_P="syslog-ng mc mtools dosfstools git"
 COMPTOOLS_P="zip unzip p7zip"
 SOUND_P="alsa-utils"
 FOOMATIC_P="foomatic-db foomatic-db-ppds foomatic-db-gutenprint-ppds"
@@ -17,6 +19,7 @@ FOOMATIC_P2="foomatic-db-nonfree foomatic-db-nonfree-ppds gutenprint"
 MULTIMEDIA_P="gst-plugins-base gst-plugins-good gst-plugins-bad gst-libav"
 MULTIMEDIA_P2="gst-plugins-ugly"
 VIM_P="vim"
+ZSH_P="zsh"
 
 read -p "Install and setup network manager ? [Y/n]: " ANSWER
 
@@ -67,4 +70,10 @@ read -p "Install vim ? [Y/n]: " ANSWER
 
 if [[ $ANSWER =~ ^[Yy]$ ]]; then
     pacman -Syu $VIM_P 
+fi
+
+read -p "Install zsh ? [Y/n]: " ANSWER
+
+if [[ $ANSWER =~ ^[Yy]$ ]]; then
+    pacman -Syu $ZSH_P 
 fi

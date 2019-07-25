@@ -42,9 +42,11 @@ fi
 # The next script must be run chroot in the new environnement.
 read -p "Do you want to run configuration scrpit ? [Y/n]: " ANSWER
 
+SCRIPT_PATH=$(pwd)
+
 if [[ $ANSWER =~ ^[Yy]$ ]]; then
-    cp 03_config_install.sh /mnt/
+    cp $SCRIPT_PATH/04_config_install.sh /mnt/
 
     # Change root into the new system and execute the script
-    arch-chroot /mnt ./03_config_install.sh
+    arch-chroot /mnt ./04_config_install.sh
 fi
