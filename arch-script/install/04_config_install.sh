@@ -32,8 +32,8 @@ echo "Time zone setup."
 echo "Configuration of your localisation"
 echo "(Choose your language and keyboard)"
 
-LANG=en_US.UTF-8 >> /etc/locale.conf
-KEYMAP=fr >> /etc/vconsole.conf
+echo "LANG=en_US.UTF-8" >> /etc/locale.conf
+echo "KEYMAP=fr-latin1" >> /etc/vconsole.conf
 
 # The user give some network configuration
 echo "Network configuration"

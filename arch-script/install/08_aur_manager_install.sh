@@ -38,5 +38,7 @@ if [[ $ANSWER =~ ^[Yy]$ ]]; then
     WRAPPER=${WRAPPERS[$NB_WRAPPER]}
     git clone https://aur.archlinux.org/$WRAPPER ~/$WRAPPER
 
-    makepkg -si ~/$WRAPPER/
+    cd ~/$WRAPPER
+    makepkg -si
+    cd
 fi

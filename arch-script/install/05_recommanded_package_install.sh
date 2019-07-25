@@ -10,8 +10,8 @@ if [ -f "./03_base_install.sh" ]; then
 fi
 
 NETWORK_P="networkmanager"
-SYSTEM_P="udev acpid lsb-release"
-SYSTEMADMIN_P="syslog-ng mc mtools dosfstools git"
+SYSTEM_P="udev acpid lsb-release exfat-utils dosfstools"
+SYSTEMADMIN_P="syslog-ng mc mtools git"
 COMPTOOLS_P="zip unzip p7zip"
 SOUND_P="alsa-utils"
 FOOMATIC_P="foomatic-db foomatic-db-ppds foomatic-db-gutenprint-ppds"

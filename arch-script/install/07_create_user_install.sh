@@ -1,4 +1,4 @@
-#!/bin/boot
+#!/bin/bash
 
 if [ -f "./03_base_install.sh" ]; then
     echo "arch-chroot"
@@ -16,10 +16,14 @@ if [[ $ANSWER =~ ^[Yy]$ ]]; then
     read -p "Give to this user sudo right ? [Y/n]: " ANSWER_S
     read -p "Which shell do you want to use ?: " ANSWER_SHELL
 
+    FULL_NAME="$(tr [A-Z] [a-z] <<< "$FULL_NAME")"
+    USER_NAME="$(tr [A-Z] [a-z] <<< "$USER_NAME")"
+    ANSWER_SHELL="$(tr [A-Z] [a-z] <<< "$ANSWER_SHELL")"
+
     if [[ $ANSWER =~ ^[Yy]$ ]]; then
-        useradd -m -g wheel -c "$FULL_NAME" -s /bin/$ANSWER_SHELL
+        useradd -m -g wheel -c \'$FULL_NAME\' -s /bin/$ANSWER_SHELL $USER_NAME
     else
-        useradd -m -c "$FULL_NAME" -s /bin/$ANSWER_SHELL
+        useradd -m -c \'$FULL_NAME\' -s /bin/$ANSWER_SHELL $USER_NAME
     fi
 
     echo "Give a password to ${USER_NAME}"

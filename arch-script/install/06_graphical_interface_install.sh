@@ -15,12 +15,16 @@ USER_P="xdg-user-dirs"
 FONT_P="ttf-bitstream-vera ttf-liberation ttf-freefont ttf-dejavu freetype2"
 VIRTUALBOX_P="xf86-video-vesa virtualbox-guest-utils"
 
+gnome="gnome gdm gdm3setup"
 cinnamon="cinnamon lightdm-gtk-greeter-settings"
-gnome=""
-xfce=""
+xfce="xfce4"
+
+gnome_setup="gdm.service"
+cinnamon_setup="lightdm.service"
 
 DESK_ENVS_NAME=('gnome' 'cinnamon' 'xfce')
 DESK_ENVS=(${gnome} ${cinnamon} ${xfce})
+DESK_SETUPS=()
 
 read -p "Do you want a graphical interface ? [Y/n] " ANSWER
 
@@ -50,11 +54,13 @@ done
 
 read -p "Choose your desktop environment: " NB_DESK
 
-DESK=${DESK_ENVS[$NB_DESK]}
-pacman -Syu $DESK
+# Install the environment
+DESKi_ENV=${DESK_ENVS[$NB_DESK]}
+pacman -Syu $DESK_ENV
 
-# Enable lightdm
-systemctl enable lightdm.service
+# Enable display manager
+DESK_SETUP=${DESK_SETUPS[$NB_DESK]}
+systemctl enable $DESK_SETUP
 
 # Set fr keyboard for x11
 localectl set-x11-keymap fr

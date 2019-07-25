@@ -37,16 +37,3 @@ if [ $? -eq 0 ]; then
 else
     echo "failed to generate fstab"
 fi
-
-# Copy at the right place the next script and run it.
-# The next script must be run chroot in the new environnement.
-read -p "Do you want to run configuration scrpit ? [Y/n]: " ANSWER
-
-SCRIPT_PATH=$(pwd)
-
-if [[ $ANSWER =~ ^[Yy]$ ]]; then
-    cp $SCRIPT_PATH/04_config_install.sh /mnt/
-
-    # Change root into the new system and execute the script
-    arch-chroot /mnt ./04_config_install.sh
-fi
