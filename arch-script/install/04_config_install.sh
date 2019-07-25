@@ -1,11 +1,13 @@
 #!/bin/bash
 
 SCRIPT_PATH=$(pwd)
-echo $SCRIPT_PATH 
+echo $SCRIPT_PATH
 
 echo "### Begin configuration Archlinux install script ###"
 
-if [ -f "~/install.txt" ]; then
+ARRAY_PATH="/" read -ra PARTS <<< "$(pwd)"
+echo $ARRAY_PATH[1]
+if [ $ARRAY_PATH[1] == "my-config-master" ]
     echo "Re-run"
     cp $SCRIPT_PATH /mnt/
     arch-chroot /mnt ./04_config_install.sh
