@@ -1,10 +1,12 @@
 #!/bin/bash
 
 SCRIPT_PATH=$(pwd)
+echo $SCRIPT_PATH 
 
 echo "### Begin configuration Archlinux install script ###"
 
 if [ -f "~/install.txt" ]; then
+    echo "Re-run"
     cp $SCRIPT_PATH /mnt/
     arch-chroot /mnt ./04_config_install.sh
     exit
@@ -79,4 +81,4 @@ fi
 
 echo "### End configuration Arch linx install script ###"
 
-echo SCRIPT_PATH
+echo $SCRIPT_PATH
