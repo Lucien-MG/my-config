@@ -1,6 +1,14 @@
 #!/bin/bash
 
+SCRIPT_PATH=$(pwd)
+
 echo "### Begin configuration Archlinux install script ###"
+
+if [ -f "~/install.txt" ]; then
+    cp $SCRIPT_PATH /mnt/
+    arch-chroot /mnt ./04_config_install.sh
+    exit
+fi
 
 # The user indicate his time zone
 echo "Configuration of your time zone"
@@ -20,7 +28,7 @@ hwclock --systohc
 
 echo "Time zone setup."
 
-echo "Configguration of your localisation"
+echo "Configuration of your localisation"
 echo "(Choose your language and keyboard)"
 
 LANG=en_US.UTF-8 >> /etc/locale.conf
@@ -32,7 +40,7 @@ echo "Network configuration"
 read -p "Choose a host name for your machine: " HOSTNAME
 mkdir /etc/$HOSTNAME
 
-'127.0.0.1   localhost' >> /etc/hosts
+echo "127.0.0.1    localhost" >> /etc/hosts
 
 echo "Generating initramfs..."
 
@@ -71,5 +79,4 @@ fi
 
 echo "### End configuration Arch linx install script ###"
 
-SCRIPT_PATH=$(pwd)
 echo SCRIPT_PATH
