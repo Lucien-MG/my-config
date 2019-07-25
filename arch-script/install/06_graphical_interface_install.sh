@@ -17,7 +17,7 @@ DESK_ENVS=($gnome $cinnamon $xfce)
 
 read -p "Do you want a graphical interface ? [Y/n]" ANSWER
 
-if [[ ANSWER =~ ^[Yy]$ ]]; then
+if [[ $ANSWER =~ ^[Yy]$ ]]; then
     install $XORG_P $INPUT_P $USER_P $FONT_P
 else
     exit
@@ -27,7 +27,7 @@ fi
 
 read -p "Are you in a virtual machine ? [Y/n]" ANSWER
 
-if [[ ANSWER =~ ^[Yy]$ ]]; then
+if [[ $ANSWER =~ ^[Yy]$ ]]; then
     install $VIRTUALBOX_P
     systemctl enable vboxservice
 fi

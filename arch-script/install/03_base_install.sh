@@ -9,7 +9,7 @@ GRUB_PACKAGES="grub efibootmgr os-prober ntfs-3g"
 
 read -p "Do you want to install arch linux base ? [Y/n]: " ANSWER
 
-if [[ ANSWER =~ ^[Yy]$ ]]; then
+if [[ $ANSWER =~ ^[Yy]$ ]]; then
     pacstrap /mnt $BASE_PACKAGES $GRUB_PACKAGES
 else
     echo "Install stoped"
@@ -42,7 +42,7 @@ fi
 # The next script must be run chroot in the new environnement.
 read -p "Do you want to run configuration scrpit ? [Y/n]: " ANSWER
 
-if [[ ANSWER =~ ^[Yy]$ ]]; then
+if [[ $ANSWER =~ ^[Yy]$ ]]; then
     cp 03_config_install.sh /mnt/
 
     # Change root into the new system and execute the script

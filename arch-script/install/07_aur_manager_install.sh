@@ -7,7 +7,7 @@ yay="https://aur.archlinux.org/yay.git"
 
 read -p "Do you want to install a pacman wrapper ? [Y/n]" ANSWER
 
-if [[ ANSWER =~ ^[Yy]$ ]]; then
+if [[ $ANSWER =~ ^[Yy]$ ]]; then
     
     git --version
     if [ $? != 0]; then
