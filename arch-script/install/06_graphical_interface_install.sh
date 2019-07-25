@@ -1,9 +1,9 @@
 #!/bin/bash
 
-XORG_P="xorg-{server,xinit,apps}"
-INPUT_P="xf86-input-{mouse,keyboard}"
+XORG_P="xorg-server xorg-xinit xorg-apps"
+INPUT_P="xf86-input-mouse xf86-input-keyboard"
 USER_P="xdg-user-dirs"
-FONT_P="ttf-{bitstream-vera,liberation,freefont,dejavu} freetype2"
+FONT_P="ttf-bitstream-vera ttf-liberation ttf-freefont ttf-dejavu freetype2"
 VIRTUALBOX_P="xf86-video-vesa virtualbox-guest-utils"
 
 cinnamon="cinnamon lightdm-gtk-greeter-settings"
@@ -16,7 +16,8 @@ DESK_ENVS=($gnome $cinnamon $xfce)
 read -p "Do you want a graphical interface ? [Y/n]" ANSWER
 
 if [[ $ANSWER =~ ^[Yy]$ ]]; then
-    pacman -Syu $XORG_P $INPUT_P $USER_P $FONT_P
+    pacman -Syu $XORG_P $INPUT_P $USER_P 
+    pacman -Syu $FONT_P
 else
     exit
 fi
