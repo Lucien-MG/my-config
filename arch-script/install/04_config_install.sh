@@ -1,13 +1,10 @@
 #!/bin/bash
 
 SCRIPT_PATH=$(pwd)
-echo $SCRIPT_PATH
 
 echo "### Begin configuration Archlinux install script ###"
 
-ARRAY_PATH="/" read -ra PARTS <<< "$(pwd)"
-echo $ARRAY_PATH[1]
-if [ $ARRAY_PATH[1] == "my-config-master" ]
+if [ -f "./03_base_install.sh" ]; then
     echo "Re-run"
     cp $SCRIPT_PATH /mnt/
     arch-chroot /mnt ./04_config_install.sh
@@ -50,14 +47,14 @@ echo "Generating initramfs..."
 
 mkinitcpio -p linux
 
+echo "Grub install"
+
+grub-install /dev/sda
+
 echo "Grub configuration"
 
 os-prober
 grub-mkconfig -o /boot/grub/grub.cfg
-
-echo "Grub install"
-
-grub-install /dev/sda1
 
 echo "Give a root password:"
 passwd
@@ -72,9 +69,9 @@ if [[ $ANSWER =~ ^[Yy]$ ]]; then
     read -p "Which shell do you want to use ?: " ANSWER_SHELL
 
     if [[ $ANSWER =~ ^[Yy]$ ]]; then
-        useradd -m -g wheel -c '${FULL_NAME}' -s /bin/$ANSWER_SHELL
+        useradd -m -g wheel -c "${FULL_NAME}" -s /bin/$ANSWER_SHELL
     else
-        useradd -m -c '${FULL_NAME}' -s /bin/$ANSWER_SHELL
+        useradd -m -c "${FULL_NAME}" -s /bin/$ANSWER_SHELL
     fi
 
     echo "Give a password to ${USER_NAME}"
@@ -83,4 +80,7 @@ fi
 
 echo "### End configuration Arch linx install script ###"
 
+SCRIPT_PATH=$(pwd)
 echo $SCRIPT_PATH
+
+rm $SCRIPT_PATH/04_config_install.sh

@@ -1,7 +1,5 @@
 #!/bin/bash
 
-alias install="pacman -Syu"
-
 NETWORK_P="networkmanager"
 SYSTEM_P="udev acpid lsb-release"
 SYSTEMADMIN_P="sudo syslog-ng mc mtools dosfstools exfat_utils git"
@@ -12,53 +10,53 @@ gutenprint"
 MULTIMEDIA_P="gst-plugins-{base,good,bad,ugly} gst-libav"
 VIM_P="vim"
 
-read -p "Install and setup network manager ?" ANSWER
+read -p "Install and setup network manager ? [Y/n]: " ANSWER
 
 if [[ $ANSWER =~ ^[Yy]$ ]]; then
-    install $NETWORK_P
+    pacman -Syu $NETWORK_P
     systemctl enable NetworkManager
 fi
 
-read -p "Install system utils ?" ANSWER
+read -p "Install system utils ? [Y/n]: " ANSWER
 
 if [[ $ANSWER =~ ^[Yy]$ ]]; then
-    install $SYSTEM_P
+    pacman -Syu $SYSTEM_P
 fi
 
-read -p "Install system admin utils ?" ANSWER
+read -p "Install system admin utils ? [Y/n]: "  ANSWER
 
 if [[ $ANSWER =~ ^[Yy]$ ]]; then
-    install $SYSTEMADMIN_P
+    pacman -Syu $SYSTEMADMIN_P
 fi
 
-read -p "Install compression tools ?" ANSWER
+read -p "Install compression tools ? [Y/n]: " ANSWER
 
 if [[ $ANSWER =~ ^[Yy]$ ]]; then
-    install $COMPTOOLS_P
+    pacman -Syu $COMPTOOLS_P
 fi
 
-read -p "Install sound manager ?" ANSWER
+read -p "Install sound manager ? [Y/n]: " ANSWER
 
 if [[ $ANSWER =~ ^[Yy]$ ]]; then
-    install $SOUND_P
+    pacman -Syu $SOUND_P
     alsamixer
     alsactl store
 fi
 
-read -p "Install printer drivers ?" ANSWER
+read -p "Install printer drivers ? [Y/n]: " ANSWER
 
 if [[ $ANSWER =~ ^[Yy]$ ]]; then
-    install $FOOMATIC_P
+    pacman -Syu $FOOMATIC_P
 fi
 
-read -p "Install multimedia libs ?" ANSWER
+read -p "Install multimedia libs ? [Y/n]: " ANSWER
 
 if [[ $ANSWER =~ ^[Yy]$ ]]; then
-    install $COMPTOOLS_P
+    pacman -Syu $COMPTOOLS_P
 fi
 
-read -p "Install vim ?" ANSWER
+read -p "Install vim ? [Y/n]: " ANSWER
 
 if [[ $ANSWER =~ ^[Yy]$ ]]; then
-    install $VIM_P 
+    pacman -Syu $VIM_P 
 fi
