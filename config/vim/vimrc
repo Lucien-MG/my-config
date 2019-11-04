@@ -7,6 +7,14 @@ set enc=utf-8
 set fenc=utf-8
 set termencoding=utf-8
 
+" Highlight the current line:
+set cursorline
+hi Cursorline term=bold cterm=bold ctermbg=238
+
+" dollars for backspace
+set listchars=tab:>-,trail:·
+set list
+
 " disable vi compatibility (emulation of old bugs)
 set nocompatible
 
@@ -30,8 +38,8 @@ set colorcolumn=80
 " always show cursor position
 set ruler
 
-" print line number 
-set number 
+" print line number
+set number
 
 " turn syntax highlighting on
 set t_Co=256
