@@ -31,15 +31,15 @@ alias l='ls -CF'
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases
 fi
-
-# Bash prompt PS1:
-
 # Basic PS1:
 # PS1='[\u@\h \W]\$ '
 
 # Color PS1:
 
+# Git branch:
+gitbranch="(\$(git branch 2>/dev/null | grep '^*' | colrm 1 2))"
+
 # Green and blue:
-PS1='\[\033[01;32m\]\u@\h\[\033[01;34m\] \W $\[\033[00m\] '
+PS1="\[\033[01;32m\]\u@\h\[\033[01;34m\] \W $\[\033[00m\] $gitbranch "
 # Green and yellow:
-PS1='\[\033[01;32m\]\u@\h\[\033[01;33m\] \W $\[\033[00m\] '
+# PS1='\[\033[01;32m\]\u@\h\[\033[01;33m\] \W $\[\033[00m\] '
